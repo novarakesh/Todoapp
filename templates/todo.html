@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body{
+        font-family: "Roboto", sans-serif;
+        background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+        color: #333;
+    }
+    h2 {
+        font-weight: bold;
+        text-align: center;
+        margin: 20px;
+    }
+    li {
+        background: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-family: "Roboto", sans-serif;
+        padding: 10px;
+        font-size: 20px;
+        list-style: none;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    span {
+        font-weight: bold;
+    }
+    .btn11 {
+        height: 38px;
+        align-items: center;
+        margin-left: 15px;
+    }
+    .btn3{
+        margin-left: 33px;
+    }
+    
+</style>
+<body>
+    
+    <h2>Todo List</h2>
+    <a href="{% url 'create_todo' %}" class="btn btn3 btn-info  mb-3">Create New Todo</a>
+
+    {% for todo in todos %}
+<ul>
+        <li class="d-flex justify-content-between">
+            <div>
+                <span>Title:</span> {{ todo.title }} <br>
+                <span>Description:</span> {{ todo.description }} <br>
+                <span>Completed:</span> {{ todo.completed }}
+            </div>
+            <div class="d-flex flex-column ">
+                <a href="{% url 'update_todo' todo.id %}" class="btn btn11 btn-primary mb-3">Update</a>
+                <a href="{% url 'delete_todo' todo.id %}" class="btn btn11 btn-danger del">Delete</a>
+            </div>
+        </li>
+        
+    
+</ul>
+    {% endfor %}
+    
+</body>
+
+{% endblock %}
